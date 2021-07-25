@@ -1,4 +1,6 @@
 const puppeteer = require('puppeteer');
+require('dotenv').config();
+
 
 // TODO: Split the form sections into their own fns
 
@@ -33,7 +35,7 @@ const puppeteer = require('puppeteer');
   // Fill in the sign-in form
   await page.waitForSelector("#fld-e").then(() => console.log("Signing in..."))
   await page.waitForTimeout(1000)
-  await page.type("#fld-e", "oleivahn@gmail.com", {delay: 100});
+  await page.type("#fld-e", process.env.USER_NAME, {delay: 100});
   await page.type("input[id='fld-p1']", "Astroboy23!!", {delay: 100});
   await page.evaluate(() => document.getElementsByClassName("cia-form__controls__submit")[0].click());
   

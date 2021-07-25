@@ -13,7 +13,7 @@ require('dotenv').config();
 
   const page = await browser.newPage();
   // await page.waitForSelector(".fulfillment-add-to-cart-button").then(() => console.log("Reaching website..."))
-  await page.goto('https://www.bestbuy.com/site/beats-by-dr-dre-powerbeats-pro-totally-wireless-earphones-black/6341988.p', { timeout: 60000});
+  await page.goto('https://www.bestbuy.com/site/beats-by-dr-dre-powerbeats-pro-totally-wireless-earphones-black/6341988.p', { timeout: 120000});
     
   // add to cart button 
   // await page.waitForSelector(".fulfillment-add-to-cart-button").then(() => console.log("Reaching website..."))
@@ -28,38 +28,28 @@ require('dotenv').config();
   await page.waitForSelector(".checkout-buttons__checkout").then(() => console.log("Cart loaded"));
   await page.evaluate(() => document.getElementsByClassName('btn btn-lg btn-block btn-primary')[0].click());
 
-  
-  
-  
+    
   
   // Fill in the sign-in form
   await page.waitForSelector("#fld-e").then(() => console.log("Signing in..."))
   await page.waitForTimeout(1000)
   await page.type("#fld-e", process.env.USER_NAME, {delay: 100});
-  await page.type("input[id='fld-p1']", "Astroboy23!!", {delay: 100});
+  await page.type("input[id='fld-p1']", process.env.USER_PW, {delay: 100});
   await page.evaluate(() => document.getElementsByClassName("cia-form__controls__submit")[0].click());
-  
-  // // IF THIS BUTTON SHOWS
-  // try {
-  //   await page.waitForSelector(".ispu-card__switch").then(() => console.log("Cart loaded"));
-  //   await page.evaluate(() => document.getElementsByClassName('ispu-card__switch')[0].click());
-  // } catch (error) {
-  //   console.log(`There was an error on the page: ${error}`)
-  // }
 
 
   // Fill shipping information
   await page.waitForSelector(".streamlined__shipping").then(() => console.log("Filling shipping information..."))
 
-  await page.type("input[id='consolidatedAddresses\.ui_address_2\.firstName']", "Omar", {delay: 100});
-  await page.type("input[id='consolidatedAddresses\.ui_address_2\.lastName']", "Leiva", {delay: 100});
-  await page.type("input[id='consolidatedAddresses\.ui_address_2\.street']", "7505 Ashby Ln", {delay: 100});
+  await page.type("input[id='consolidatedAddresses\.ui_address_2\.firstName']", process.env.FIRST_NAME, {delay: 100});
+  await page.type("input[id='consolidatedAddresses\.ui_address_2\.lastName']", process.env.LAST_NAME, {delay: 100});
+  await page.type("input[id='consolidatedAddresses\.ui_address_2\.street']", process.env.ADDRESS_1, {delay: 100});
   await page.evaluate(() => document.getElementsByClassName("address-form__showAddress2Link")[0].click());
   await page.waitForTimeout(1000)
-  await page.type("input[id='consolidatedAddresses\.ui_address_2\.street2']", "Unit K", {delay: 100});
-  await page.type("input[id='consolidatedAddresses\.ui_address_2\.city']", "Alexandria", {delay: 100});
-  await page.select("select[id='consolidatedAddresses\.ui_address_2\.state']", "VA");
-  await page.type("input[id='consolidatedAddresses\.ui_address_2\.zipcode']", "22315", {delay: 100});
+  await page.type("input[id='consolidatedAddresses\.ui_address_2\.street2']", process.env.ADDRESS_2, {delay: 100});
+  await page.type("input[id='consolidatedAddresses\.ui_address_2\.city']", process.env.CITY, {delay: 100});
+  await page.select("select[id='consolidatedAddresses\.ui_address_2\.state']", process.env.STATE);
+  await page.type("input[id='consolidatedAddresses\.ui_address_2\.zipcode']", process.env.ZIP_CODE, {delay: 100});
   await page.evaluate(() => document.getElementsByClassName("btn btn-lg btn-block btn-secondary")[0].click());
   
 

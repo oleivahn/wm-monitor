@@ -20,7 +20,7 @@ const puppeteer = require('puppeteer');
   
   // (METHOD 1 to click a button) -> let the modal with cart load and the click the "Go To Cart" button
   await page.waitForTimeout(5000)
-  await page.waitForSelector(".c-button-secondary").then(() => console.log("Item added to the cart"));
+  await page.waitForSelector(".c-button-secondary").then(() => console.log("Item added to the cart..."));
   await page.$eval("a[class='c-button c-button-secondary btn btn-secondary btn-sm c-button-sm btn-block c-button-block ']", elem => elem.click());
 
   // (METHOD 2 to click a button) -> wait for the cart to fully load and click Pay

@@ -10,12 +10,11 @@ const puppeteer = require('puppeteer');
   });
 
   const page = await browser.newPage();
-  await page.goto('https://www.bestbuy.com/site/beats-by-dr-dre-powerbeats-pro-totally-wireless-earphones-black/6341988.p', {
-    waitUntil: 'networkidle2'
-  });
+  // await page.waitForSelector(".fulfillment-add-to-cart-button").then(() => console.log("Reaching website..."))
+  await page.goto('https://www.bestbuy.com/site/beats-by-dr-dre-powerbeats-pro-totally-wireless-earphones-black/6341988.p', { timeout: 60000});
     
   // add to cart button 
-  await page.waitForSelector(".fulfillment-add-to-cart-button").then(() => console.log("Reaching website..."))
+  // await page.waitForSelector(".fulfillment-add-to-cart-button").then(() => console.log("Reaching website..."))
   await page.evaluate(() => document.getElementsByClassName("btn btn-primary btn-lg btn-block btn-leading-ficon add-to-cart-button")[0].click());
   
   // (METHOD 1 to click a button) -> let the modal with cart load and the click the "Go To Cart" button

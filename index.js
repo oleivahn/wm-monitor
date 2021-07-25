@@ -1,5 +1,7 @@
 const puppeteer = require('puppeteer');
 
+// TODO: Split the form sections into their own fns
+
 (async () => {
   // Initial browser configuration
   const browser = await puppeteer.launch({

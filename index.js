@@ -15,6 +15,8 @@ require('dotenv').config();
   const page = await browser.newPage();
   await page.goto('https://www.bestbuy.com/site/beats-by-dr-dre-powerbeats-pro-totally-wireless-earphones-black/6341988.p', { timeout: 120000});
     
+  // console.log(process.env);
+  
   // Add to cart button 
   await page.waitForSelector(".fulfillment-add-to-cart-button").then(() => console.log("Entering website..."))
   await page.evaluate(() => document.getElementsByClassName("btn btn-primary btn-lg btn-block btn-leading-ficon add-to-cart-button")[0].click());
@@ -51,6 +53,8 @@ require('dotenv').config();
   await page.type("input[id='consolidatedAddresses\.ui_address_2\.city']", process.env.CITY, {delay: 100});
   await page.select("select[id='consolidatedAddresses\.ui_address_2\.state']", process.env.STATE);
   await page.type("input[id='consolidatedAddresses\.ui_address_2\.zipcode']", process.env.ZIP_CODE, {delay: 100});
+  // await page.type("input[id='fulfillment_1losOne Day1']", process.env.ZIP_CODE, {delay: 100});
+  // await page.evaluate(() => document.getElementById("fulfillment_1losOne Day1").click());
   await page.evaluate(() => document.getElementsByClassName("btn btn-lg btn-block btn-secondary")[0].click());
   
   // Fill payment information
